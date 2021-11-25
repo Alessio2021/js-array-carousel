@@ -21,3 +21,13 @@ const text = [
     'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
 ]
+
+const slider = document.querySelector(".slider");
+const mainImg = document.querySelector(".main-img");
+
+for (let index = 0; index < items.length; index++) {
+    let image = `<img src="${items[index]}" alt="">`
+    // console.log(items[index]);
+
+    mainImg.innerHTML += image;
+}
