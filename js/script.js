@@ -45,6 +45,6 @@ arrowUp.addEventListener('click', function () {
     // rimuovo l active e lo riassegno alla foto successiva
     activeImg.classList.remove("active");
     const next = activeImg.nextElementSibling;
+    console.log(next)
     activeImg.classList.add("active");
-
-}
+});
