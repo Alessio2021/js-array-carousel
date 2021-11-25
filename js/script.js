@@ -43,8 +43,8 @@ const arrowDown = document.querySelector(".arrow-down");
 arrowUp.addEventListener('click', function () {
     const activeImg = document.querySelector(".active");
     // rimuovo l active e lo riassegno alla foto successiva
-    const next = activeImg.nextElementSibling;
     activeImg.classList.remove("active");
+    const next = activeImg.nextElementSibling;
     activeImg.classList.add("active");
 
 }
