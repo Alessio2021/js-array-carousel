@@ -22,29 +22,93 @@ const text = [
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,'
 ]
 
-const slider = document.querySelector(".slider");
-const mainImg = document.querySelector(".main-img");
+const imagesRight = document.querySelector(".thumbs");
+const imagesLeft = document.querySelector(".main-img");
 
-// inserisco foto in html
-for (let index = 0; index < items.length; index++) {
-    let image = `<img src="${items[index]}" alt="">`
-    // console.log(items[index]);
-    mainImg.innerHTML += image;
+
+for (let i = 0; i < items.length; i++) {
+    imagesRight.innerHTML += `<img src=${items[i]} alt="">`
+    imagesLeft.innerHTML += `
+    <div class="image-container"> 
+        <img src=${items[i]} alt="">
+        <div>
+            <h1>${title[i]}</h1>
+            <h2>${text[i]}</h2>
+        </div>
+    </div>
+    `
 }
 
-// assegno classe active per display block
-const img = document.querySelectorAll("img");
-img[0].classList.add("active");
+const active = document.querySelectorAll(".main-img .image-container");
+const bright = document.querySelectorAll(".thumbs img");
 
-const arrowUp = document.querySelector(".arrow-up");
-const arrowDown = document.querySelector(".arrow-down");
-// assegno al bottone il cambio foto
+console.log(bright.classList);
 
-arrowUp.addEventListener('click', function () {
-    const activeImg = document.querySelector(".active");
-    // rimuovo l active e lo riassegno alla foto successiva
-    activeImg.classList.remove("active");
-    const next = activeImg.nextElementSibling;
-    console.log(next)
-    activeImg.classList.add("active");
-});
+
+active[0].classList.add("active", "first");
+active[active.length - 1].classList.add("last")
+bright[0].classList.add("bright", "first");
+bright[bright.length - 1].classList.add("last")
+
+
+const down = document.querySelector(".down");
+
+down.addEventListener("click", function () {
+
+    let falso = false;
+    const brightBottom = document.querySelector(".thumbs img.bright");
+    const activeBottom = document.querySelector(".main-img .image-container.active")
+
+    for (let i = 0; i < bright.length; i++) {
+
+        if (brightBottom.classList[i] == "last") {
+            falso = true
+        }
+    }
+
+    if (falso == false) {
+        brightBottom.classList.remove("bright");
+        brightBottom.nextElementSibling.classList.add("bright");
+
+        activeBottom.classList.remove("active");
+        activeBottom.nextElementSibling.classList.add("active");
+
+    } else {
+        active[0].classList.add("active");
+        bright[0].classList.add("bright");
+        active[active.length - 1].classList.remove("active");
+        bright[bright.length - 1].classList.remove("bright");
+    }
+})
+
+
+const up = document.querySelector(".up");
+
+up.addEventListener("click", function () {
+
+    let falso = false;
+    const brightBottom = document.querySelector(".thumbs img.bright");
+    const activeBottom = document.querySelector(".main-img .image-container.active");
+
+    for (let i = 0; i < active.length; i++) {
+
+        if (activeBottom.classList[i] == "first") {
+            falso = true
+        }
+    }
+
+    if (falso == false) {
+        brightBottom.classList.remove("bright");
+        brightBottom.previousElementSibling.classList.add("bright");
+
+        activeBottom.classList.remove("active");
+        activeBottom.previousElementSibling.classList.add("active");
+    } else {
+        active[0].classList.remove("active");
+        bright[0].classList.remove("bright");
+        active[active.length - 1].classList.add("active");
+        bright[bright.length - 1].classList.add("bright");
+    }
+
+
+})
